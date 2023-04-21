@@ -13,47 +13,55 @@ class _SwipePageState extends State<SwipePage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       key: _scaffoldKey,
-
       body: Stack(
         children: [
           IconButton(
-            onPressed: () =>
-            {
+            onPressed: () => {
               _scaffoldKey.currentState?.openDrawer(),
             },
             icon: Icon(Icons.menu, color: PADColors.primary),
+            alignment: Alignment.topRight,
           ),
 
           Column(
             children: [
-              SizedBox(height: screenHeight * .7),
-              Text("Food Name"),
-              Text("Person Name"),
+              SizedBox(height: screenHeight * .83),
+              Text(
+                "Food Name",
+                style: Theme.of(context).textTheme.headline2,
+              ),
+              Text(
+                "Person Name",
+                style: Theme.of(context).textTheme.headline3,
+              ),
             ],
           ),
 
           // PUT IMAGE HERE
         ],
       ),
-
       drawer: Drawer(
         child: ListView(
           children: [
+            SizedBox(height: screenHeight * .05,),
             ListTile(
-                title: const Text("Return"),
-                onTap: () =>
-                {
-                  // Return two pages (one to get out of the drawer, and another to get back to the home page
-                  Navigator.of(context)
-                    ..pop()..pop()
-                }),
+                title: Text(
+                  "Home",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2
+                      ?.copyWith(fontSize: 32),
+                ),
+                onTap: () => {
+                      // Return two pages (one to get out of the drawer, and another to get back to the home page
+                      Navigator.of(context)
+                        ..pop()
+                        ..pop()
+                    }),
           ],
         ),
       ),
